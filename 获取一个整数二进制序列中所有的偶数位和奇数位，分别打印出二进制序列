@@ -1,0 +1,43 @@
+#include<stdio.h>
+
+void print(int a, int i)
+{
+	if (i <=32)
+	{
+		print(a >> 1,i+1);
+		printf("%d", a & 1);
+	}
+
+}
+
+void print_odd(int a, int i)
+{
+	if (i <= 32)
+	{
+		print_odd(a >> 2, i + 2);
+		printf("%d", a & 1);
+	}
+}
+
+void print_even(int a, int i)
+{
+	if (i <= 32)
+	{
+		print_even(a >> 2, i + 2);
+		printf("%d", a & 1);
+	}
+}
+
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int i = 1;
+	print(a,i);//打印所有
+	printf("\n");
+	print_odd(a, i);//打印奇数位
+	printf("\n");
+	print_even(a>>1, i);//打印偶数位
+	printf("\n");
+	return 0;
+}
