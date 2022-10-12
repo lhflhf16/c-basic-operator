@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+//递归函数计算10^n
+int power(int n)
+{
+	if (n > 0)
+	{
+		return 10 * power(n - 1);
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+int main()
+{
+	int a = 2;
+	int n = 5;//前五项
+	int Sn = 0;
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < n; i++)//第一层循环求Sn每一项的和
+	{
+		int An = 0;
+		for (j = 0; j <= i; j++)//第二层循环求Sn的每一项，i=0 An=2，i=1 An=2+20=22，i=2 An=2+20+200=222……
+		{
+			An =An+ a*power(j);
+			if (j==i)
+			printf("An=%d\n", An);
+		}
+		Sn = Sn + An;
+	}
+	printf("Sn=%d\n", Sn);
+	return 0;
+}
