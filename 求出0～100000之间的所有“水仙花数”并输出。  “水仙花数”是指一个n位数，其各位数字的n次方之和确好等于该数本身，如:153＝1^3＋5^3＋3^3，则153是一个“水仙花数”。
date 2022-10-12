@@ -1,0 +1,54 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+//求i各个位上数的n次方
+int i_power_n(int x, int n)
+{
+	if (n > 1)
+		return x*i_power_n(x, n - 1);
+	else
+		return x;
+}
+//i各个位上数的n次方的和
+int Daffodil(int i, int n)
+{
+	if (i > 9)
+	{
+		return 	i_power_n(i % 10, n)+Daffodil(i / 10,n);
+	}
+	else
+	{
+		return i_power_n(i % 10, n);
+	}
+}
+//判断i是几位数
+int i_number_n(int i)
+{
+	int count = 1;
+	while (i > 9)
+	{
+		i=i / 10;
+		count++;
+	}
+	return count;
+}
+//打印水仙花数
+void Find_Daffodil()
+{
+	int i = 0;
+	int n = 1;
+	for (i = 1; i <= 10000; i++)
+	{
+		n=i_number_n(i);//确定i是几位数
+		if (i == Daffodil(i,n))
+		{
+			printf("i=%d\n", i);
+		}
+	}
+}
+int main()
+{
+	int i = 0;
+	Find_Daffodil();
+	return 0;
+}
