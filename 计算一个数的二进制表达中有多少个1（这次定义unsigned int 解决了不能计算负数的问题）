@@ -1,0 +1,27 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+//计算一个数的二进制表达中有多少个1（这次定义unsigned int 解决了不能计算负数的问题）
+#include<stdio.h>
+int count_bit_one(unsigned int a)
+{
+	/*让形式参数的类型定义为无符号数就可以解决负数不能计算的情况
+	因为这时最高位的1不再表示负号，%2得到的就不是-1，而是1*/
+	int count = 0;
+	while (a)
+	{
+		if (a % 2 == 1)
+		{
+			count++;
+		}
+		a = a / 2;
+	}
+	return count;
+}
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int count = count_bit_one(a);
+	printf("%d\n", count);
+	return 0;
+}
