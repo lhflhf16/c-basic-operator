@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+/*实现计算一个数的二进制表示中有多少个1（方法三）
+思路：13=1101         n=1101
+n=1101 n-1=1100 n=n&n-1=1100
+n=1100 n-1=1011 n=n&n-1=1000
+n=1000 n-1=0111 n=n&n-1=0000
+可以发现 n=n&n-1 会让它的二进制数的最右边的1去掉，直到最后为0
+这个算法效率很高，因为一次操作就会少一个1，不管那个1在哪里例如：1000
+也只用一次就能去掉1，而使用>>右移操作符需要四次（即使使用break;），使
+用%2 /2 方法也需要操作四次*/
+#include<stdio.h>
+int function(int n)
+{
+	int count = 0;
+	while (n)
+	{
+		n = n&(n - 1);
+		count++;
+	}
+	return count;
+}
+int main()
+{
+	int a = 0;
+	scanf("%d", &a);
+	int count = function(a);
+	printf("%d\n", count);
+	return 0;
+}
